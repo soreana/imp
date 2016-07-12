@@ -1,6 +1,6 @@
 package org.sinsing.os;
 
-import org.sinsing.os.applications.Terminal;
+import org.sinsing.os.applications.terminal.Terminal;
 
 /**
  * Created by sosin-PC on 7/13/2016.

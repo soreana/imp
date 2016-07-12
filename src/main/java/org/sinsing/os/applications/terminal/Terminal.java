@@ -1,4 +1,6 @@
-package org.sinsing.os.applications;
+package org.sinsing.os.applications.terminal;
+
+import org.sinsing.os.applications.Application;
 
 import java.io.BufferedReader;
 import java.io.IOException;
