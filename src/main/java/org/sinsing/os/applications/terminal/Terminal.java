@@ -1,6 +1,8 @@
 package org.sinsing.os.applications.terminal;
 
 import org.sinsing.os.applications.Application;
+import org.sinsing.os.applications.terminal.commands.Command;
+import org.sinsing.os.applications.terminal.commands.CommandFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,9 +11,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * Created by sosin-PC on 7/13/2016.
- */
 public class Terminal implements Application {
     private BufferedReader input;
 
@@ -20,13 +19,13 @@ public class Terminal implements Application {
         input = new BufferedReader(fileInputStream);
     }
 
-    private void parseCommand() throws IOException {
+    private Command parseCommand() throws IOException {
         String rawInput;
         rawInput = input.readLine();
         String[] tempArray = rawInput.split(" ");
         String command = tempArray[0];
         if(tempArray.length <=1)
-            return;
+            return CommandFactory.getCommand(command);
         ArrayList<String> options = new ArrayList<>();
         ArrayList<String> arguments = new ArrayList<>();
 
@@ -38,10 +37,7 @@ public class Terminal implements Application {
 
         arguments.addAll(Arrays.asList(tempArray).subList(i, tempArray.length));
 
-        System.out.println(rawInput);
-        System.out.println(command);
-        System.out.println(options);
-        System.out.println(arguments);
+        return CommandFactory.getCommand(command,options,arguments);
     }
 
     private void close(){
@@ -52,8 +48,10 @@ public class Terminal implements Application {
     public void run() {
         while (!Thread.interrupted()) {
             try {
-                if (input.ready())
-                    parseCommand();
+                if (input.ready()) {
+                    Command command = parseCommand();
+                    command.execute();
+                }
             } catch (IOException ignored) {
             }
         }
