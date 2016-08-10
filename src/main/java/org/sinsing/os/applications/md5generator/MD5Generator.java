@@ -11,29 +11,24 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by sosin-PC on 8/8/2016.
  */
-public class MD5Generator implements Application {
-
-    private static HashMap<String, String> texts;
-    private static ArrayList<String> needToCalculateMD5;
-    private MessageDigest messageDigest;
-
-    private static MD5Generator md5Generator;
-
-    public static MD5Generator getInstance() {
-        if (md5Generator == null)
-            md5Generator = new MD5Generator();
-        return md5Generator;
-    }
-
-    private MD5Generator() {
+public final class MD5Generator implements Application {
+    static {
         try {
             messageDigest = MessageDigest.getInstance("MD5");
             texts = new HashMap<>();
             needToCalculateMD5 = new ArrayList<>();
+            thread = new Thread(new MD5Generator());
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
     }
+
+    private static Thread thread;
+    private static HashMap<String, String> texts;
+    private static ArrayList<String> needToCalculateMD5;
+    private static MessageDigest messageDigest;
+
+    private MD5Generator() {}
 
     public static String putString(String input) {
         if (texts.get(input) != null)
@@ -48,6 +43,15 @@ public class MD5Generator implements Application {
         if ("Not Calculated.".equals(temp))
             throw new RuntimeException("result was not calculated.");
         return temp;
+    }
+
+    public static void start(){
+        if(thread.getState() == Thread.State.NEW)
+            thread.start();
+    }
+
+    public static void stop(){
+        thread.interrupt();
     }
 
     private void calculateOneMD5() {
