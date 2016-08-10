@@ -1,5 +1,7 @@
 package org.sinsing.os.applications.terminal.commands;
 
+import org.sinsing.os.OS;
+
 import java.util.ArrayList;
 
 /**
@@ -8,12 +10,13 @@ import java.util.ArrayList;
 public class CommandFactory {
     public static Command getCommand(String command, ArrayList<String> options , ArrayList<String> arguments){
 
-        System.out.println(command);
-
         if("cp".equals(command))
             return new Copy(options,arguments);
         else if ("md5".equals(command))
             return new MD5(options,arguments);
+        else if ("exit".equals(command)) {
+            return new Exit(options,arguments);
+        }
         return null;
     }
 
