@@ -50,7 +50,8 @@ public class Terminal implements Application {
             try {
                 if (input.ready()) {
                     Command command = parseCommand();
-                    command.execute();
+                    String result = command.execute();
+                    System.out.println(result);
                 }
             } catch (IOException ignored) {
             }
