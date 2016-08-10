@@ -8,7 +8,9 @@ import java.util.ArrayList;
  * Created by sosin-PC on 8/10/2016.
  */
 public class MD5 extends Command {
-    public MD5(ArrayList<String> options, ArrayList<String> arguments) {
+    public MD5(ArrayList<String> options, ArrayList<String> arguments) throws BadCommand {
+        if(arguments.isEmpty())
+            throw new BadCommand("insufficient arguments.");
         this.options = options;
         this.arguments = arguments;
     }
