@@ -17,7 +17,12 @@ public class CommandFactory {
         else if ("exit".equals(command)) {
             return new Exit(options,arguments);
         }
-        return null;
+        return new Command() {
+            @Override
+            public String execute() {
+                return "Command not found.";
+            }
+        };
     }
 
     public static Command getCommand(String command) {
