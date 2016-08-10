@@ -24,10 +24,12 @@ public class Terminal implements Application {
         rawInput = input.readLine();
         String[] tempArray = rawInput.split(" ");
         String command = tempArray[0];
-        if(tempArray.length <=1)
-            return CommandFactory.getCommand(command);
+
         ArrayList<String> options = new ArrayList<>();
         ArrayList<String> arguments = new ArrayList<>();
+
+        if(tempArray.length <=1)
+            return CommandFactory.getCommand(command,options,arguments);
 
         int i = 1;
         while (tempArray[i].indexOf("-") == 0) {

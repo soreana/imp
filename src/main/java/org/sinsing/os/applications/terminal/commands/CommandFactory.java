@@ -30,8 +30,4 @@ public class CommandFactory {
             }
         };
     }
-
-    public static Command getCommand(String command) {
-        return getCommand(command,null,null);
-    }
 }
