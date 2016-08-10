@@ -12,6 +12,8 @@ public class CommandFactory {
 
         if("cp".equals(command))
             return new Copy(options,arguments);
+        else if ("md5".equals(command))
+            return new MD5(options,arguments);
         return null;
     }
 
