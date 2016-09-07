@@ -14,20 +14,19 @@ public class CommandFactory {
         String message = "Command not found.";
 
         try {
-            if ("cp".equals(command))
-                return new Copy(options, arguments,terminal);
-            else if ("md5".equals(command))
+            if ("md5".equals(command))
                 return new MD5(options, arguments,terminal);
-            else if ("exit".equals(command)) {
+            else if ("exit".equals(command))
                 return new Exit(options, arguments,terminal);
-            }
+            else if ("cd".equals(command))
+                return new ChangeDirectory(options,arguments,terminal);
         }catch (BadCommand badCommand){
             message = badCommand.getMessage();
         }
 
         String finalMessage = message;
 
-        return new Command() {
+        return new Command(options,arguments) {
             @Override
             public String execute() {
                 return finalMessage;

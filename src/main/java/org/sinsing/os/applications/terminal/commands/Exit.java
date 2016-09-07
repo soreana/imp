@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class Exit extends Command {
     public Exit(ArrayList<String> options, ArrayList<String> arguments, TerminalInterface terminal) {
+        super(options,arguments);
     }
 
     @Override

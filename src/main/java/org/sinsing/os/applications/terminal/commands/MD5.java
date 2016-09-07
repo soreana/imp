@@ -8,12 +8,9 @@ import java.util.ArrayList;
 /**
  * Created by sosin-PC on 8/10/2016.
  */
-public class MD5 extends Command {
+public class MD5 extends NeedArgumentsCommand{
     public MD5(ArrayList<String> options, ArrayList<String> arguments, TerminalInterface terminal) throws BadCommand {
-        if(arguments.isEmpty())
-            throw new BadCommand("insufficient arguments.");
-        this.options = options;
-        this.arguments = arguments;
+        super(options,arguments,1);
     }
 
     @Override
