@@ -1,6 +1,7 @@
 package org.sinsing;
 
 import org.sinsing.os.OS;
+import org.sinsing.os.applications.filesystem.SinaiFileSystem;
 import org.sinsing.os.applications.md5generator.MD5Generator;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
  */
 public class Main {
     public static void main( String [] args) throws InterruptedException {
+        SinaiFileSystem.start();
         OS.start();
 
         /*
