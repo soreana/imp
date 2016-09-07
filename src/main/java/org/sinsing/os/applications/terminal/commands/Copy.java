@@ -1,5 +1,7 @@
 package org.sinsing.os.applications.terminal.commands;
 
+import org.sinsing.os.applications.terminal.TerminalInterface;
+
 import java.util.ArrayList;
 
 /**
@@ -7,7 +9,7 @@ import java.util.ArrayList;
  */
 
 public class Copy extends Command {
-    public Copy(ArrayList<String> options, ArrayList<String> arguments) {
+    public Copy(ArrayList<String> options, ArrayList<String> arguments, TerminalInterface terminal) {
         System.out.println(options);
         System.out.println(arguments);
     }

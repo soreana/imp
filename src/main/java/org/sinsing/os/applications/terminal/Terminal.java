@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Terminal implements Application {
+public class Terminal implements Application ,TerminalInterface{
     private BufferedReader input;
 
     public Terminal(InputStream in) {
@@ -29,7 +29,7 @@ public class Terminal implements Application {
         ArrayList<String> arguments = new ArrayList<>();
 
         if(tempArray.length <=1)
-            return CommandFactory.getCommand(command,options,arguments);
+            return CommandFactory.getCommand(command,options,arguments,this);
 
         int i = 1;
         while (tempArray[i].indexOf("-") == 0) {
@@ -39,7 +39,7 @@ public class Terminal implements Application {
 
         arguments.addAll(Arrays.asList(tempArray).subList(i, tempArray.length));
 
-        return CommandFactory.getCommand(command,options,arguments);
+        return CommandFactory.getCommand(command,options,arguments,this);
     }
 
     private void close(){

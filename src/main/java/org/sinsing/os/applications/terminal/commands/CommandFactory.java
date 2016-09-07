@@ -1,21 +1,25 @@
 package org.sinsing.os.applications.terminal.commands;
 
+import org.sinsing.os.applications.terminal.TerminalInterface;
+
 import java.util.ArrayList;
 
 /**
  * Created by sosin-PC on 7/14/2016.
  */
 public class CommandFactory {
-    public static Command getCommand(String command, ArrayList<String> options , ArrayList<String> arguments){
+    public static Command getCommand(String command, ArrayList<String> options,
+                                     ArrayList<String> arguments, TerminalInterface terminal){
+
         String message = "Command not found.";
 
         try {
             if ("cp".equals(command))
-                return new Copy(options, arguments);
+                return new Copy(options, arguments,terminal);
             else if ("md5".equals(command))
-                return new MD5(options, arguments);
+                return new MD5(options, arguments,terminal);
             else if ("exit".equals(command)) {
-                return new Exit(options, arguments);
+                return new Exit(options, arguments,terminal);
             }
         }catch (BadCommand badCommand){
             message = badCommand.getMessage();

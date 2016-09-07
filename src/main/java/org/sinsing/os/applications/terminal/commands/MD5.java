@@ -1,6 +1,7 @@
 package org.sinsing.os.applications.terminal.commands;
 
 import org.sinsing.os.applications.md5generator.MD5Generator;
+import org.sinsing.os.applications.terminal.TerminalInterface;
 
 import java.util.ArrayList;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * Created by sosin-PC on 8/10/2016.
  */
 public class MD5 extends Command {
-    public MD5(ArrayList<String> options, ArrayList<String> arguments) throws BadCommand {
+    public MD5(ArrayList<String> options, ArrayList<String> arguments, TerminalInterface terminal) throws BadCommand {
         if(arguments.isEmpty())
             throw new BadCommand("insufficient arguments.");
         this.options = options;
