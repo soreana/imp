@@ -1,6 +1,7 @@
 package org.sinsing.os.applications.terminal;
 
 import org.sinsing.os.applications.Application;
+import org.sinsing.os.applications.filesystem.SinaiFileSystem;
 import org.sinsing.os.applications.terminal.commands.Command;
 import org.sinsing.os.applications.terminal.commands.CommandFactory;
 
@@ -13,10 +14,12 @@ import java.util.Arrays;
 
 public class Terminal implements Application ,TerminalInterface{
     private BufferedReader input;
+    private SinaiFileSystem.SinaiPath currentPath;
 
     public Terminal(InputStream in) {
         InputStreamReader fileInputStream = new InputStreamReader(in);
         input = new BufferedReader(fileInputStream);
+        currentPath = SinaiFileSystem.getNewPathInstance();
     }
 
     private Command parseCommand() throws IOException {
@@ -59,5 +62,10 @@ public class Terminal implements Application ,TerminalInterface{
             }
         }
         close();
+    }
+
+    @Override
+    public SinaiFileSystem.SinaiPath getCurrentPath() {
+        return currentPath;
     }
 }
